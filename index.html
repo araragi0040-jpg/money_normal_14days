@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#f5f1ea" />
+<link rel="manifest" href="./manifest.webmanifest" />
+<link rel="icon" href="./icon-192.png" />
+<title>お金の当たり前更新｜14日間</title>
+<style>
+:root{
+  --bg:#f5f1ea; --card:#fffdf9; --text:#2b2926; --sub:#716c65; --line:#ded7cc;
+  --accent:#6b7550; --accent2:#e8eadf; --danger:#9a5149; --shadow:0 10px 30px rgba(50,40,28,.08);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Yu Gothic",sans-serif;background:var(--bg);color:var(--text)}
+.app{max-width:760px;margin:auto;padding:18px 14px 110px}
+header{padding:10px 4px 18px}
+h1{font-size:26px;line-height:1.25;margin:0 0 6px}
+.small{font-size:13px;color:var(--sub);line-height:1.6}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0;box-shadow:var(--shadow)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.between{justify-content:space-between}
+.badge{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--accent2);color:#4f583a;font-size:12px;font-weight:700}
+.progress{height:9px;border-radius:999px;background:#e8e2d9;overflow:hidden;margin-top:10px}
+.progress>div{height:100%;background:var(--accent);width:0}
+button,.btn{border:0;border-radius:14px;padding:13px 15px;font-weight:700;font-size:15px;background:var(--accent);color:white;cursor:pointer}
+button.secondary{background:#ece7de;color:var(--text)}
+button.ghost{background:transparent;color:var(--accent);border:1px solid var(--line)}
+button.danger{background:#f1dedb;color:var(--danger)}
+button:disabled{opacity:.45;cursor:not-allowed}
+.nav{position:fixed;left:0;right:0;bottom:0;background:rgba(255,253,249,.95);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:9px 10px calc(9px + env(safe-area-inset-bottom));z-index:30}
+.navin{max-width:760px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.nav button{padding:10px 6px;font-size:12px;background:transparent;color:var(--sub)}
+.nav button.active{background:var(--accent2);color:#44502f}
+.hidden{display:none!important}
+h2{font-size:20px;margin:0 0 10px}
+h3{font-size:16px;margin:14px 0 8px}
+.quote{font-size:18px;line-height:1.7;padding:14px;background:#f4f2ec;border-radius:14px}
+label{display:block;font-size:13px;font-weight:700;margin:12px 0 6px}
+textarea,input[type="text"],input[type="number"],input[type="date"]{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:white;color:var(--text);font:inherit}
+textarea{min-height:92px;resize:vertical}
+.scoreline{display:grid;grid-template-columns:42px 1fr 42px;align-items:center;gap:8px}
+input[type="range"]{width:100%}
+.score{font-size:22px;font-weight:800;text-align:center}
+.tags{display:flex;gap:7px;flex-wrap:wrap}
+.tag{padding:8px 11px;border-radius:999px;background:#f0ece5;border:1px solid transparent;font-size:13px;cursor:pointer;user-select:none}
+.tag.on{background:var(--accent2);border-color:#aab28d;color:#4b5437}
+.statement{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+.statement:first-child{border-top:0;margin-top:0;padding-top:0}
+.notice{padding:11px 13px;border-radius:12px;background:#f1eee7;color:#5f5a52;font-size:13px;line-height:1.6}
+.daygrid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.day{aspect-ratio:1;border-radius:12px;background:#eee8df;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;cursor:pointer;position:relative}
+.day.done{background:#dde3cf;color:#3e4930}
+.day.current{outline:2px solid var(--accent)}
+.day .dot{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--accent);bottom:5px}
+.metric{display:grid;grid-template-columns:1fr auto;gap:8px;padding:10px 0;border-bottom:1px solid var(--line)}
+.metric:last-child{border-bottom:0}
+.metric strong{font-size:18px}
+pre{white-space:pre-wrap;word-break:break-word;background:#f4f2ec;padding:12px;border-radius:12px;max-height:380px;overflow:auto;font-size:12px}
+.timer{font-size:42px;font-weight:800;letter-spacing:.04em;text-align:center;margin:12px 0}
+.hero{background:linear-gradient(145deg,#fdfbf6,#eceee5)}
+.check{display:flex;gap:10px;align-items:flex-start;padding:8px 0}
+.check input{margin-top:4px}
+@media(max-width:480px){
+  .app{padding-left:11px;padding-right:11px}
+  h1{font-size:23px}
+  .quote{font-size:17px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="badge">14 DAYS / GitHub v002</div>
+    <h1>お金の当たり前更新</h1>
+    <div class="small">欲する → 受け取る → 持つ → 使う → 返す。<br>「信じ込む」のではなく、身体と実体験に新しい普通を覚えさせる14日間。DAY1〜4は復元済みです。</div>
+  </header>
+
+  <section id="home" class="screen">
+    <div class="card hero">
+      <div class="row between"><div><b id="todayLabel">DAY 1</b><div class="small" id="phaseLabel"></div></div><span class="badge" id="doneBadge">未記録</span></div>
+      <div class="progress"><div id="overallProgress"></div></div>
+      <h2 id="dayTitle" style="margin-top:18px"></h2>
+      <div class="quote" id="dayTheme"></div>
+      <div class="notice" id="dayAction" style="margin-top:12px"></div>
+      <div class="row" style="margin-top:14px">
+        <button onclick="openToday()">今日の実践を始める</button>
+        <button class="secondary" onclick="goto('calendar')">14日一覧</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>開始時の基準値</h2>
+      <div class="small">ここまでの対話で見えている初期値。14日目に比較します。</div>
+      <div class="metric"><span>欲しいものを自由に欲しいと思える</span><strong>2/10</strong></div>
+      <div class="metric"><span>自分のためだけにお金を使える</span><strong>3/10</strong></div>
+      <div class="metric"><span>余裕資金をそのまま持っていられる</span><strong>4/10</strong></div>
+      <div class="metric"><span>お金を理由に最初から諦めない</span><strong>2/10</strong></div>
+      <div class="metric"><span>受け取ってすぐ返さなくても平気</span><strong>3/10</strong></div>
+    </div>
+  </section>
+
+  <section id="practice" class="screen hidden">
+    <div class="card">
+      <div class="row between"><div><span class="badge" id="pDayBadge"></span><h2 id="pTitle" style="margin-top:8px"></h2></div><button class="ghost" onclick="goto('home')">戻る</button></div>
+      <div class="notice" id="pAction"></div>
+    </div>
+
+    <div class="card">
+      <h2>① 身体をみる</h2>
+      <div class="small">肩・顎・胸・お腹に力が入っていないか確認。無理に緩めず、60秒だけ呼吸と身体を観察します。</div>
+      <div class="timer" id="timer">01:00</div>
+      <div class="row" style="justify-content:center">
+        <button onclick="startTimer()" id="timerBtn">60秒スタート</button>
+        <button class="secondary" onclick="resetTimer()">リセット</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>② 4つの文章を声に出す</h2>
+      <div class="small">それぞれ、今の「当たり前度」と身体反応を記録します。10点にする必要はありません。</div>
+      <div id="statements"></div>
+    </div>
+
+    <div class="card">
+      <h2>③ 今日の実験</h2>
+      <label>今日、試したこと</label>
+      <textarea id="did" placeholder="例：欲しいものを『高いから無理』で消さず、欲しいものメモに残した"></textarea>
+      <label>やる前に、何が起こると思っていた？</label>
+      <textarea id="pred" placeholder="例：欲しいと思うと、買えない自分がしんどくなりそう"></textarea>
+      <label>実際には何が起きた？</label>
+      <textarea id="actual" placeholder="例：欲しいと思うだけなら何も困らなかった"></textarea>
+      <label>今日の一言</label>
+      <textarea id="note" placeholder="気づき・感情・身体反応など"></textarea>
+      <div class="row" style="margin-top:14px">
+        <button onclick="saveDay()">今日の記録を保存</button>
+        <button class="secondary" onclick="goto('home')">あとで続ける</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="calendar" class="screen hidden">
+    <div class="card">
+      <h2>14日一覧</h2>
+      <div class="daygrid" id="dayGrid"></div>
+      <div class="small" style="margin-top:10px">タップすると、その日の記録を開けます。</div>
+    </div>
+    <div class="card" id="historyCard"></div>
+  </section>
+
+  <section id="export" class="screen hidden">
+    <div class="card">
+      <h2>ChatGPTへ渡す</h2>
+      <div class="small">「ChatGPT用テキスト」をコピーして、このチャットに貼り付ければ、そのまま14日間の分析ができます。</div>
+      <div class="row" style="margin-top:14px">
+        <button onclick="buildExport()">最新の出力を作成</button>
+        <button class="secondary" onclick="copyExport()">テキストをコピー</button>
+        <button class="secondary" onclick="shareExport()">共有</button>
+      </div>
+      <pre id="exportPreview">まだ出力を作成していません。</pre>
+      <div class="row">
+        <button class="ghost" onclick="downloadTxt()">TXT保存</button>
+        <button class="ghost" onclick="downloadJson()">JSONバックアップ</button>
+        <button class="ghost" onclick="downloadCsv()">CSV保存</button>
+      </div>
+    </div>
+    <div class="card">
+      <h2>バックアップ復元</h2>
+      <div class="small">端末変更時などに、書き出したJSONから記録を戻せます。</div>
+      <input type="file" id="importFile" accept=".json,application/json" style="margin-top:12px">
+      <button class="secondary" onclick="importJson()" style="margin-top:10px">JSONを読み込む</button>
+    </div>
+    <div class="card">
+      <h2>データ管理</h2>
+      <div class="small">データはこのブラウザの端末内に保存されます。削除すると元に戻せません。</div>
+      <button class="danger" onclick="resetAll()" style="margin-top:12px">全記録を削除</button>
+    </div>
+  </section>
+</div>
+
+<div class="nav">
+  <div class="navin">
+    <button data-nav="home" class="active" onclick="goto('home')">ホーム</button>
+    <button data-nav="practice" onclick="openToday()">今日</button>
+    <button data-nav="calendar" onclick="goto('calendar')">記録</button>
+    <button data-nav="export" onclick="goto('export')">出力</button>
+  </div>
+</div>
+
+<script src="./seed_data.js"></script>
+<script>
+const KEY='money_normal_14days_v002';
+const BODY=['胸','左胸','みぞおち','お腹','喉','顎','肩','頭','その他','特になし'];
+const statements=[
+  '私は、できるかどうかに関係なく、欲しいものを欲しいと思っていい。',
+  '私は、お金や好意を受け取っていい。',
+  '私は、必要以上の余裕を持っていていい。',
+  '私は、自分の望みを、お金だけを理由に最初から消さなくていい。'
+];
+const days=[
+ {phase:'欲する',title:'望みを消さない',theme:'「できるか」と「欲しいか」を分ける。',action:'何か欲しい・やりたいと思ったら、金額を見る前か見た後に一度だけ「で、自分は本当はどうしたい？」と確認。買わなくていい。欲しいものメモに残す。'},
+ {phase:'欲する',title:'欲しいを言葉にする',theme:'「欲しい」と思うこと自体には、お金はかからない。',action:'今日ひとつ、現実性を考えず「本当はこれが欲しい／やりたい」を言葉にする。'},
+ {phase:'欲する',title:'願望と実現方法を分ける',theme:'今すぐ払えないことと、望んでいいかどうかは別。',action:'高い・難しいと感じたものをひとつ、「今は方法未定。でも欲しい」で保留する。'},
+ {phase:'受け取る',title:'ありがとうで一度終える',theme:'受け取る → 嬉しい → ありがとう。そこで一度止める。',action:'好意・手伝い・褒め言葉などを受け取ったら、即座に返礼を約束せず「ありがとう。嬉しい」で一度終了する。'},
+ {phase:'受け取る',title:'返したい／返さなきゃを分ける',theme:'自発的な返礼と、義務感による返礼は別。',action:'何か返したくなったら「返したい？ 返さなきゃ？」を確認。さらに「返さないままだと相手との立場がどうなる気がする？」も観察する。'},
+ {phase:'受け取る',title:'受け取ったままでいる',theme:'未精算に見える状態でも、関係や対等性は壊れないかもしれない。',action:'今日受け取った小さな好意を、その日のうちに精算しない。「相手は本当に見返りを要求している？ それとも自分の予測？」も確認する。'},
+ {phase:'持つ',title:'余白を残す',theme:'余ったお金は「使われていない」のではなく、選択肢として存在している。',action:'無理のない範囲で用途未定のお金を残す。金額より「使わない選択」を経験することを優先。'},
+ {phase:'持つ',title:'余っていていい',theme:'お金は、使う理由がなくても手元にあっていい。',action:'昨日までの余白を、今日も用途を決めずに置いてみる。「これ、余ってていいお金」と確認する。'},
+ {phase:'持つ',title:'未来の自由として見る',theme:'余剰＝安心・選択肢・未来への余白。',action:'手元に残ったお金で可能になる「選べること」を3つだけ想像する。使わなくていい。'},
+ {phase:'使う',title:'自分を喜ばせる',theme:'「自分が嬉しい」は、お金を使う理由になっていい。',action:'生活を圧迫しない小さな金額で、自分が少し嬉しくなるもの・経験をひとつ選ぶ。'},
+ {phase:'使う',title:'正当化しないで使う',theme:'仕事・勉強・人脈につながらなくても、自分の喜びで選んでいい。',action:'「役に立つから」以外の理由で選んだ支出をひとつ観察。買わなくても、選ぶだけでもOK。'},
+ {phase:'返す／断る',title:'余裕があっても断っていい',theme:'お金がある＝使う、ではない。',action:'誘いや支出候補に対して「払える？」より先に「本当に行きたい／欲しい？」を確認する。'},
+ {phase:'返す／断る',title:'返すことを選ぶ',theme:'返礼は義務ではなく、自分で選べる。',action:'返したい気持ちが出たら、一度時間を置いてから、それでも返したいなら返す。'},
+ {phase:'統合',title:'14日間を統合する',theme:'点数を上げることより「思っていたより大丈夫だったこと」を見つける。',action:'開始時の5項目を再採点し、「予想と違って大丈夫だったこと」を3つ書く。'}
+];
+
+function clone(x){return JSON.parse(JSON.stringify(x))}
+function load(){
+ try{const raw=localStorage.getItem(KEY); if(raw)return JSON.parse(raw)}catch(e){}
+ const seeded=clone(window.SEED_DATA||{startDate:'2026-09-15',records:{}});
+ localStorage.setItem(KEY,JSON.stringify(seeded));
+ return seeded;
+}
+function save(data){localStorage.setItem(KEY,JSON.stringify(data))}
+let data=load();
+if(!data.records)data.records={};
+function currentDay(){for(let i=1;i<=14;i++){if(!data.records[i]?.savedAt)return i}return 14}
+let activeDay=currentDay();
+
+function goto(id){
+ document.querySelectorAll('.screen').forEach(x=>x.classList.add('hidden'));
+ document.getElementById(id).classList.remove('hidden');
+ document.querySelectorAll('[data-nav]').forEach(x=>x.classList.toggle('active',x.dataset.nav===id));
+ if(id==='home')renderHome();
+ if(id==='calendar')renderCalendar();
+ if(id==='export')buildExport();
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function renderHome(){
+ const d=currentDay(), cfg=days[d-1], rec=data.records[d];
+ document.getElementById('todayLabel').textContent='次は DAY '+d;
+ document.getElementById('phaseLabel').textContent=cfg.phase;
+ document.getElementById('dayTitle').textContent=cfg.title;
+ document.getElementById('dayTheme').textContent=cfg.theme;
+ document.getElementById('dayAction').textContent='今日の実験：'+cfg.action;
+ document.getElementById('doneBadge').textContent=Object.values(data.records).filter(x=>x&&x.savedAt).length+'/14日';
+ const done=Object.values(data.records).filter(x=>x&&x.savedAt).length;
+ document.getElementById('overallProgress').style.width=(done/14*100)+'%';
+}
+function openToday(){openDay(currentDay())}
+function openDay(d){
+ activeDay=d;
+ const cfg=days[d-1], rec=data.records[d]||{};
+ document.getElementById('pDayBadge').textContent=`DAY ${d} / ${cfg.phase}`;
+ document.getElementById('pTitle').textContent=cfg.title;
+ document.getElementById('pAction').textContent=cfg.action;
+ const wrap=document.getElementById('statements'); wrap.innerHTML='';
+ statements.forEach((s,i)=>{
+   const st=rec.statements?.[i]||{score:5,bodies:[],bodyMemo:''};
+   const div=document.createElement('div'); div.className='statement';
+   div.innerHTML=`
+    <div class="quote">${s}</div>
+    <label>当たり前度</label>
+    <div class="scoreline"><span>0</span><input type="range" min="0" max="10" step="1" value="${st.score??5}" id="score${i}" oninput="document.getElementById('scoreVal${i}').textContent=this.value"><span class="score" id="scoreVal${i}">${st.score??5}</span></div>
+    <label>身体反応</label>
+    <div class="tags" id="tags${i}">${BODY.map(b=>`<span class="tag ${st.bodies?.includes(b)?'on':''}" onclick="this.classList.toggle('on')">${b}</span>`).join('')}</div>
+    <input type="text" id="bodyMemo${i}" value="${esc(st.bodyMemo||'')}" placeholder="例：胸がズンとする／お腹が刺さる感じ">
+   `;
+   wrap.appendChild(div);
+ });
+ ['did','pred','actual','note'].forEach(id=>document.getElementById(id).value=rec[id]||'');
+ goto('practice');
+}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')}
+function saveDay(){
+ const rec={statements:[],did:val('did'),pred:val('pred'),actual:val('actual'),note:val('note'),savedAt:new Date().toISOString()};
+ statements.forEach((_,i)=>{
+   rec.statements.push({
+    score:+document.getElementById('score'+i).value,
+    bodies:[...document.querySelectorAll('#tags'+i+' .tag.on')].map(x=>x.textContent),
+    bodyMemo:document.getElementById('bodyMemo'+i).value.trim()
+   });
+ });
+ data.records[activeDay]=rec; save(data);
+ alert('DAY '+activeDay+' を保存しました');
+ renderHome(); goto('home');
+}
+function val(id){return document.getElementById(id).value.trim()}
+function renderCalendar(){
+ const grid=document.getElementById('dayGrid');grid.innerHTML='';
+ for(let i=1;i<=14;i++){
+  const x=document.createElement('div');x.className='day'+(data.records[i]?.savedAt?' done':'')+(i===currentDay()?' current':'');
+  x.innerHTML=i+(data.records[i]?.savedAt?'<span class="dot"></span>':'');
+  x.onclick=()=>{openDay(i)};
+  grid.appendChild(x);
+ }
+ const hc=document.getElementById('historyCard');
+ const done=Object.keys(data.records).map(Number).sort((a,b)=>a-b);
+ hc.innerHTML='<h2>記録済み</h2>'+(done.length?done.map(d=>`<div class="metric"><span>DAY ${d}｜${days[d-1].title}</span><strong>${avg(data.records[d]).toFixed(1)}</strong></div>`).join(''):'<div class="small">まだ記録がありません。</div>');
+}
+function avg(rec){const a=rec?.statements?.map(x=>+x.score)||[];return a.length?a.reduce((x,y)=>x+y,0)/a.length:0}
+
+let timerInt=null, remain=60;
+function drawTimer(){document.getElementById('timer').textContent='00:'+String(remain).padStart(2,'0')}
+function startTimer(){
+ if(timerInt)return;
+ document.getElementById('timerBtn').textContent='進行中';
+ timerInt=setInterval(()=>{remain--;drawTimer();if(remain<=0){clearInterval(timerInt);timerInt=null;navigator.vibrate?.(200);document.getElementById('timerBtn').textContent='完了';}},1000)
+}
+function resetTimer(){if(timerInt)clearInterval(timerInt);timerInt=null;remain=60;drawTimer();document.getElementById('timerBtn').textContent='60秒スタート'}
+
+function buildExport(){
+ const baseline=[
+  ['欲しいものを自由に欲しいと思える',2],
+  ['自分のためだけにお金を使える',3],
+  ['余裕資金をそのまま持っていられる',4],
+  ['お金を理由に最初から諦めない',2],
+  ['受け取ってすぐ返さなくても平気',3]
+ ];
+ let t=`【14日間 お金の当たり前更新｜ChatGPT解析用】\n開始日：${data.startDate}\n記録済み：${Object.values(data.records).filter(x=>x.savedAt).length}/14日\n\n`;
+ t+='■開始時の基準値\n'+baseline.map(x=>`- ${x[0]}：${x[1]}/10`).join('\n')+'\n\n';
+ for(let d=1;d<=14;d++){
+  const r=data.records[d]; if(!r?.savedAt)continue;
+  t+=`■DAY ${d}｜${days[d-1].phase}｜${days[d-1].title}\n`;
+  r.statements.forEach((s,i)=>{
+   t+=`${i+1}. ${statements[i]}\n   当たり前度：${s.score}/10\n   身体：${(s.bodies||[]).join('、')||'記録なし'}${s.bodyMemo?'／'+s.bodyMemo:''}\n`;
+  });
+  t+=`試したこと：${r.did||'記録なし'}\n予想：${r.pred||'記録なし'}\n実際：${r.actual||'記録なし'}\n一言：${r.note||'記録なし'}\n\n`;
+ }
+ t+='■ChatGPTへの依頼\nこの14日間の記録を、①点数の変化 ②身体反応の変化 ③予測と現実のズレ ④繰り返し出ているMoney Scriptや価値観 ⑤新しく育っている当たり前 ⑥次の実践テーマ、の観点から分析してください。過度な因果断定は避け、本人の言葉と実体験を中心に整理してください。';
+ document.getElementById('exportPreview').textContent=t;
+ return t;
+}
+async function copyExport(){const t=buildExport();try{await navigator.clipboard.writeText(t);alert('コピーしました。このチャットに貼り付けて送れます。')}catch(e){alert('コピーできませんでした。出力欄を長押ししてコピーしてください。')}}
+async function shareExport(){
+ const t=buildExport();
+ if(navigator.share){try{await navigator.share({title:'14日間 お金の当たり前更新',text:t})}catch(e){}}
+ else copyExport();
+}
+function blobDownload(name,text,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+function downloadTxt(){blobDownload('money-normal-14days.txt',buildExport(),'text/plain;charset=utf-8')}
+function downloadJson(){blobDownload('money-normal-14days-backup.json',JSON.stringify(data,null,2),'application/json')}
+function downloadCsv(){
+ let rows=[['day','phase','statement','score','body','body_memo','did','prediction','actual','note']];
+ for(let d=1;d<=14;d++){const r=data.records[d];if(!r?.savedAt)continue;r.statements.forEach((s,i)=>rows.push([d,days[d-1].phase,statements[i],s.score,(s.bodies||[]).join('|'),s.bodyMemo||'',r.did||'',r.pred||'',r.actual||'',r.note||'']))}
+ const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+ blobDownload('money-normal-14days.csv','\ufeff'+rows.map(r=>r.map(q).join(',')).join('\n'),'text/csv;charset=utf-8')
+}
+function importJson(){
+ const f=document.getElementById('importFile').files[0];if(!f)return alert('JSONファイルを選択してください');
+ const rd=new FileReader();rd.onload=()=>{try{const x=JSON.parse(rd.result);if(!x.records)throw 0;data=x;save(data);alert('復元しました');renderHome();goto('home')}catch(e){alert('読み込めないJSONです')}};rd.readAsText(f)
+}
+function resetAll(){if(confirm('14日間の記録をすべて削除します。よろしいですか？')){localStorage.removeItem(KEY);location.reload()}}
+renderHome();
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
+</script>
+</body>
+</html>
