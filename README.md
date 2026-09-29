@@ -1,16 +1,45 @@
-# お金の当たり前更新｜14日間 GitHub v002
+# 当たり前更新プログラム v003
 
-DAY1〜4を復元済みのGitHub Pages向け版です。初回アクセス時にDAY1〜4を自動読み込みし、DAY5から再開します。
+## v003の考え方
+Phase 1の記録を残したまま、流れでPhase 2へ進む28日構成です。
 
-## GitHub Pages公開
-1. 新規Repositoryを作成
-2. このフォルダ内の全ファイルをRepository直下へアップロード
-3. Settings → Pages
-4. Build and deployment: Deploy from a branch
-5. Branch: main / /(root) → Save
-6. 表示された https://ユーザー名.github.io/リポジトリ名/ をスマホChromeで開く
-7. Chromeメニューから「ホーム画面に追加」または「アプリをインストール」
+- Phase 1（14日）: 許可を育てる
+  - 欲する / 受け取る / 持つ / 使う / 返す
+- Phase 2（14日）: 選択を通す
+  - 自分の望みを先に確認し、使う / 残す / 待つ / 断る / YESを自分で選ぶ
 
-## バックアップ
-数日ごとにアプリの「出力 → JSON」を保存してください。ブラウザデータを削除するとlocalStorageも消えます。
-`money_normal_14days_day1-4.json` は今回復元した4日分の元データです。
+将来的な一般公開を想定し、v003本体には個人データを含めていません。
+
+## 既存v002から更新する場合
+同じGitHub Pagesリポジトリ・同じURLでv003へ更新すると、初回起動時に
+`money_normal_14days_v002`
+のlocalStorageを自動検出してPhase 1へ移行します。
+
+ただし、v002にはPhase 1終了時の最終5項目が保存されていないため、
+必要に応じてv003の最終チェックを入力するか、別途作成したv003バックアップJSONをインポートしてください。
+
+## 今回の個人データを完全復元する場合
+`shu_phase1_completed_v003_backup.json` はGitHubへアップロードしないでください。
+
+1. v003をGitHub Pagesへ公開
+2. スマホで公開URLを開く
+3. 「データ」→「復元・移行」
+4. `shu_phase1_completed_v003_backup.json` を選択
+5. 読み込み後、Phase 1が完了状態になりPhase 2の開始時チェックへ進みます
+
+## GitHub Pages
+1. このZIP内のファイルをリポジトリ直下へアップロード
+2. Settings → Pages
+3. Deploy from a branch
+4. `main` / `/(root)` を選択
+5. 公開URLをスマホChromeで開く
+6. 「アプリをインストール」または「ホーム画面に追加」
+
+## データ安全性
+記録本体はブラウザのlocalStorageに保存されます。
+v003では記録が増えるとバックアップ通知を表示します。
+数日ごとに「データ → JSONバックアップ」を保存してください。
+
+## 一般公開時
+個人用バックアップJSONは公開リポジトリへ置かず、v003本体のみ公開してください。
+新規ユーザーはPhase 1の開始時チェックから始まります。

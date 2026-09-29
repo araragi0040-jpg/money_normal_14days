@@ -1,11 +1,11 @@
 {
-  "name": "お金の当たり前更新｜14日間",
+  "name": "当たり前更新プログラム",
   "short_name": "当たり前更新",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f5f1ea",
-  "theme_color": "#f5f1ea",
+  "background_color": "#f3efe8",
+  "theme_color": "#f3efe8",
   "icons": [
     {
       "src": "./icon-192.png",
