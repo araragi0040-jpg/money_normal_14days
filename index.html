@@ -58,7 +58,7 @@ pre{white-space:pre-wrap;word-break:break-word;background:#f3f0ea;border-radius:
 <body>
 <div class="app">
 <header>
-  <span class="badge">v003</span>
+  <span class="badge">v004 · 42 DAYS</span>
   <h1>当たり前更新プログラム</h1>
   <div class="small">「信じ込む」のではなく、身体の反応と小さな実体験から、自分の“普通”を更新していく。</div>
 </header>
@@ -67,7 +67,7 @@ pre{white-space:pre-wrap;word-break:break-word;background:#f3f0ea;border-radius:
   <div class="card hero" id="heroCard"></div>
   <div class="card">
     <h2>プログラム全体</h2>
-    <div class="small">Phase 1のデータを残したまま、完了後にPhase 2へ進みます。一般利用ではPhase 1から順に始まります。</div>
+    <div class="small">記録を引き継ぎ、許可 → 選択 → 実現へと進みます。新規利用はPhase 1から始まります。</div>
     <div id="phaseRoadmap"></div>
   </div>
   <div class="card" id="backupReminder"></div>
@@ -96,15 +96,15 @@ pre{white-space:pre-wrap;word-break:break-word;background:#f3f0ea;border-radius:
   </div>
   <div class="card">
     <h2>復元・移行</h2>
-    <div class="small">v003 JSON、旧v002 JSON、旧アプリのCSVを読み込めます。既存データがある場合は確認してから統合します。</div>
+    <div class="small">v004 / v003 / v002 のJSON、旧アプリのCSVを読み込めます。標準設定は既存データを守る「統合」です。</div>
     <input type="file" id="importFile" accept=".json,.csv,application/json,text/csv" style="margin-top:10px">
-    <button class="secondary" onclick="importFile()" style="margin-top:9px">ファイルを読み込む</button>
+    <label for="importMode">読み込み方法</label><select id="importMode"><option value="merge">統合する（既存記録を優先）— 推奨</option><option value="replace">読み込んだ内容で置き換える（上級者向け）</option></select><button class="secondary" onclick="importFile()" style="margin-top:9px">ファイルを読み込む</button>
     <div id="migrationStatus" class="notice hidden" style="margin-top:10px"></div>
   </div>
   <div class="card">
     <h2>この端末のデータ</h2>
     <div id="dataSummary" class="small"></div>
-    <button class="danger" onclick="resetAll()" style="margin-top:12px">この端末の記録を初期化</button>
+    <button class="danger" onclick="resetAll()" style="margin-top:12px">この端末のv004記録を初期化</button>
   </div>
 </section>
 </div>
